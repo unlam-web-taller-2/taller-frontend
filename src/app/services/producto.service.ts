@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { producto } from '../interfaces/producto';
+import { Producto } from '../interfaces/producto';
 import { HttpClient } from '@angular/common/http';
 import { share } from 'rxjs/operators';
 
@@ -10,15 +10,15 @@ import { share } from 'rxjs/operators';
 })
 export class ProductoService {
 
-  productos : producto[] = [];
+  productos : Producto[] = [];
 
-  constructor(protected httpClient: HttpClient) { 
-    
+  constructor(protected httpClient: HttpClient) {
+
    }
 
-  getProductos(): Observable<producto[]>{
+  getProductos(): Observable<Producto[]>{
 
     return this.httpClient.get<any[]>('https://fakestoreapi.com/products').pipe(share());
-    
+
   }
 }

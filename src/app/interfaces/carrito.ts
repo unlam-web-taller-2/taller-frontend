@@ -1,5 +1,5 @@
-import { producto } from './producto';
+import { Producto } from './producto';
 
 export interface Carrito{
-    productos: producto[];
+    productos: Producto[];
 }

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
-import { producto } from './interfaces/producto';
+import { Producto } from './interfaces/producto';
 import { ProductoService } from './services/producto.service';
 
 @Component({
@@ -10,9 +10,9 @@ import { ProductoService } from './services/producto.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  
+
   title = 'miAplicacion';
-  carrito : producto[] = [
+  carrito : Producto[] = [
     {
       id: 100,
       title: 'Flauta',
@@ -22,18 +22,13 @@ export class AppComponent implements OnInit {
       image:'imagen'
     }
   ]
-  
-  productos : producto[] = []
-  
+
+  productos : Producto[] = []
+
   constructor(private productoService: ProductoService, protected httpClient: HttpClient){
 
   }
   ngOnInit(): void {
     this.productoService.getProductos().subscribe(response => this.productos = response);
-  }
-
-  
-  agregarProducto(producto: producto): void{
-    this.carrito.push(producto);
   }
 }
