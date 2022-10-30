@@ -1,0 +1,16 @@
+<div class="row border-bottom pt-4 pb-4 mt-0">
+  <div class="col-1">
+    <img [src]="producto.image" [alt]="producto.title"
+         class="img-fluid">
+  </div>
+  <div class="col-10">
+    <h5>{{ producto.title }}</h5>
+    <app-reviews [rating]="producto.rating"></app-reviews>
+  </div>
+  <div class="col-1">
+    <p>$ {{ producto.price }}</p>
+    <button
+      (click)="remover()"
+      class="btn btn-danger">Remover</button>
+  </div>
+</div>

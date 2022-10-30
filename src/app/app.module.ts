@@ -8,6 +8,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './pages/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { CarritoComponent } from './pages/carrito/carrito.component';
+import { CarritoItemComponent } from './components/carrito-item/carrito-item.component';
+import { ReviewsComponent } from './components/reviews/reviews.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +18,10 @@ import { FooterComponent } from './components/footer/footer.component';
     ProductoComponent,
     HomeComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    CarritoComponent,
+    CarritoItemComponent,
+    ReviewsComponent
   ],
   imports: [
     BrowserModule,

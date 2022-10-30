@@ -15,7 +15,11 @@ export class ProductoComponent implements OnInit {
     price: 0,
     description: "",
     category: "",
-    image: ""
+    image: "",
+    rating: {
+      count: 0,
+      rate: 0
+    }
   }
 
   agregadoAlCarrito: Boolean = false
@@ -23,10 +27,14 @@ export class ProductoComponent implements OnInit {
   constructor(private carritoUseCase: CarritoUseCase) { }
 
   ngOnInit(): void {
+    this.agregadoAlCarrito = this.carritoUseCase.agregado(this.producto)
     this.carritoUseCase.carritoEmitter
       .asObservable()
       .subscribe(
-        _ => this.agregadoAlCarrito = this.carritoUseCase.agregado(this.producto)
+        _ => {
+          this.agregadoAlCarrito = this.carritoUseCase.agregado(this.producto)
+          console.log(`producto: agregado al carrito => ${this.agregadoAlCarrito}`)
+        }
       )
   }
 

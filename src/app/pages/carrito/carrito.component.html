@@ -1,0 +1,11 @@
+<div class="container">
+  <div *ngFor="let cart of carrito"
+       class="mt-4">
+    <app-carrito-item [producto]="cart"></app-carrito-item>
+  </div>
+
+  <div class="pt-5 pb-5">
+    <h5 class="text-end">{{ 'Total: $ ' + total }}</h5>
+  </div>
+
+</div>

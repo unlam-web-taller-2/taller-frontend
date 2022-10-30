@@ -1,8 +1,11 @@
+import { Rating } from "./rating";
+
 export interface Producto {
     id: number,
-    title: String,
-    price: Number,
-    description: String,
-    category: String,
-    image: String
+    title: string,
+    price: number,
+    description: string,
+    category: string,
+    image: string,
+    rating: Rating
 }

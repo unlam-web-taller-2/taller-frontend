@@ -11,16 +11,9 @@
       <!-- Product name-->
       <h5 class="fw-bolder">Special Item</h5>
       <!-- Product reviews-->
-      <div class="d-flex justify-content-center small text-warning mb-2">
-        <div class="bi-star-fill"></div>
-        <div class="bi-star-fill"></div>
-        <div class="bi-star-fill"></div>
-        <div class="bi-star-fill"></div>
-        <div class="bi-star-fill"></div>
-      </div>
+      <app-reviews [rating]="producto.rating" [centerStars]="true" ></app-reviews>
       <!-- Product price-->
-      <span class="text-muted text-decoration-line-through">$20.00</span>
-      {{producto.price}}
+      <span class="text-muted text-decoration-line-through">$ {{producto.price}}</span>
     </div>
   </div>
   <!-- Product actions-->
