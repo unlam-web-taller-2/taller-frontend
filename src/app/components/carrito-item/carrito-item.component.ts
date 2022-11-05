@@ -1,6 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Producto} from "../../interfaces/producto";
-import {CarritoUseCase} from "../../use-cases/carrito-use-case";
+import { Component, Input, OnInit } from '@angular/core';
+import { Producto } from "../../interfaces/producto";
+import { CartUseCase } from "../../use-cases/cart-use-case.service";
 
 @Component({
   selector: 'app-carrito-item',
@@ -22,11 +22,11 @@ export class CarritoItemComponent implements OnInit {
     }
   }
 
-  constructor(private carritoUseCase: CarritoUseCase) { }
+  constructor(private carritoUseCase: CartUseCase) { }
 
   ngOnInit(): void { }
 
   remover() {
-    this.carritoUseCase.actualizar(this.producto)
+    this.carritoUseCase.update(this.producto)
   }
 }

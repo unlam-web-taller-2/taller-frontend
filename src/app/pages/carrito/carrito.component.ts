@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {CarritoUseCase} from "../../use-cases/carrito-use-case";
-import {Producto} from "../../interfaces/producto";
+import { CartUseCase } from "../../use-cases/cart-use-case.service";
+import { Producto } from "../../interfaces/producto";
 
 @Component({
   selector: 'app-carrito',
@@ -11,12 +11,12 @@ export class CarritoComponent implements OnInit {
   carrito: Producto[] = []
   total: number = 0
 
-  constructor(private carritoUseCase: CarritoUseCase) { }
+  constructor(private carritoUseCase: CartUseCase) { }
 
   ngOnInit(): void {
-    this.carrito = this.carritoUseCase.carrito
+    this.carrito = this.carritoUseCase.cart
     this.updateCarrito()
-    this.carritoUseCase.carritoEmitter
+    this.carritoUseCase.cartEmitter
       .asObservable()
       .subscribe(
         prods => {

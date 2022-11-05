@@ -1,6 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Producto } from '../../interfaces/producto';
-import {CarritoUseCase} from "../../use-cases/carrito-use-case";
+import { CartUseCase } from "../../use-cases/cart-use-case.service";
 
 @Component({
   selector: 'app-producto',
@@ -24,21 +24,21 @@ export class ProductoComponent implements OnInit {
 
   agregadoAlCarrito: Boolean = false
 
-  constructor(private carritoUseCase: CarritoUseCase) { }
+  constructor(private carritoUseCase: CartUseCase) { }
 
   ngOnInit(): void {
-    this.agregadoAlCarrito = this.carritoUseCase.agregado(this.producto)
-    this.carritoUseCase.carritoEmitter
+    this.agregadoAlCarrito = this.carritoUseCase.isAdded(this.producto)
+    this.carritoUseCase.cartEmitter
       .asObservable()
       .subscribe(
         _ => {
-          this.agregadoAlCarrito = this.carritoUseCase.agregado(this.producto)
+          this.agregadoAlCarrito = this.carritoUseCase.isAdded(this.producto)
           console.log(`producto: agregado al carrito => ${this.agregadoAlCarrito}`)
         }
       )
   }
 
   agregarProducto(producto: Producto): void{
-    this.carritoUseCase.actualizar(producto)
+    this.carritoUseCase.update(producto)
   }
 }
