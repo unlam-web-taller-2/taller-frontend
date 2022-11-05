@@ -1,6 +1,6 @@
 import {EventEmitter, Injectable} from "@angular/core";
 import {Producto} from "../interfaces/producto";
-import {CarritoLocalstorage} from "../utils/carrito-localstorage";
+import {CartLocalstorage} from "../utils/cart-localstorage.service";
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +10,8 @@ export class CarritoUseCase {
 
   carritoEmitter: EventEmitter<Producto[]> = new EventEmitter<Producto[]>()
 
-  constructor(private localStorage: CarritoLocalstorage) {
-    this.carrito = localStorage.getCarrito()
-    //console.log(this.carrito)
+  constructor(private localStorage: CartLocalstorage) {
+    this.carrito = localStorage.getCart()
     this.carritoEmitter.emit(this.carrito)
   }
 
@@ -23,7 +22,7 @@ export class CarritoUseCase {
       this.remover(producto)
     }
 
-    this.localStorage.saveCarrito(this.carrito)
+    this.localStorage.saveCart(this.carrito)
     this.carritoEmitter.emit(this.carrito)
   }
 
