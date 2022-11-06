@@ -18,7 +18,7 @@ export class ReviewsComponent {
 
   constructor() { }
 
-  redondearPromedio(): number {
+  rateRounded(): number {
     return Math.round(this.rating.rate)
   }
 }
