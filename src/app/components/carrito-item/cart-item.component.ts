@@ -3,13 +3,13 @@ import { Product } from "../../interfaces/product";
 import { CartUseCase } from "../../use-cases/cart-use-case.service";
 
 @Component({
-  selector: 'app-carrito-item',
-  templateUrl: './carrito-item.component.html'
+  selector: 'app-cart-item',
+  templateUrl: './cart-item.component.html'
 })
-export class CarritoItemComponent implements OnInit {
+export class CartItemComponent implements OnInit {
 
   @Input()
-  producto: Product = {
+  product: Product = {
     id: 0,
     title: "",
     price: 0,
@@ -22,11 +22,11 @@ export class CarritoItemComponent implements OnInit {
     }
   }
 
-  constructor(private carritoUseCase: CartUseCase) { }
+  constructor(private cartUseCase: CartUseCase) { }
 
   ngOnInit(): void { }
 
   remover() {
-    this.carritoUseCase.update(this.producto)
+    this.cartUseCase.update(this.product)
   }
 }
