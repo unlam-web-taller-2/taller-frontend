@@ -9,19 +9,20 @@ import { Router } from "@angular/router";
 })
 export class HeaderComponent {
 
-  carrito: Product[] = []
+  cart: Product[] = []
 
-  constructor(private carritoUseCase: CartUseCase, private router: Router) {
-    this.carrito = carritoUseCase.cart
-    this.carritoUseCase.cartEmitter
+  constructor(private cartUseCase: CartUseCase, private router: Router) {
+    this.cart = cartUseCase.cart
+    this.cartUseCase.cartEmitter
       .asObservable()
       .subscribe(cart => {
         console.log(cart)
-        this.carrito = cart
+        this.cart = cart
       })
   }
 
-  irAlCarrito() {
+  goToCartPage() {
+    // noinspection JSIgnoredPromiseFromCall
     this.router.navigate(['/cart']);
   }
 }
