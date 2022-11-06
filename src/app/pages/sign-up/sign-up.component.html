@@ -1,0 +1,38 @@
+<div class="w-100 d-flex" style="height: 100vh">
+  <form class="card m-auto p-4" style="width: 36em">
+    <h3>Sign Up</h3>
+
+    <!-- ///////////////////////////// Name ///////////////////////////// -->
+    <div class="form-floating mb-3 mt-4">
+      <input type="text" class="form-control" id="name" placeholder="name@example.com">
+      <label for="email">Name</label>
+    </div>
+
+    <!-- ///////////////////////////// Last Name ///////////////////////////// -->
+    <div class="form-floating mb-3">
+      <input type="text" class="form-control" id="last-name" placeholder="name@example.com">
+      <label for="last-name">Last Name</label>
+    </div>
+
+    <!-- ///////////////////////////// Address ///////////////////////////// -->
+    <div class="form-floating mb-3">
+      <input type="text" class="form-control" id="address" placeholder="name@example.com">
+      <label for="address">Address</label>
+    </div>
+
+    <!-- ///////////////////////////// Email ///////////////////////////// -->
+    <div class="form-floating mb-3">
+      <input type="email" class="form-control" id="email" placeholder="name@example.com">
+      <label for="email">Email</label>
+    </div>
+
+    <!-- ///////////////////////////// Password ///////////////////////////// -->
+    <div class="form-floating mb-3">
+      <input type="password" class="form-control" id="password" placeholder="name@example.com">
+      <label for="password">Password</label>
+    </div>
+
+    <button class="btn btn-primary btn-lg w-100 mt-4" (click)="signUp()">Register</button>
+
+  </form>
+</div>
