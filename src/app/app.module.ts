@@ -8,7 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './pages/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { CarritoComponent } from './pages/carrito/carrito.component';
+import { CartComponent } from './pages/cart/cart.component';
 import { CartItemComponent } from './components/carrito-item/cart-item.component';
 import { ReviewsComponent } from './components/reviews/reviews.component';
 
@@ -19,7 +19,7 @@ import { ReviewsComponent } from './components/reviews/reviews.component';
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    CarritoComponent,
+    CartComponent,
     CartItemComponent,
     ReviewsComponent
   ],
