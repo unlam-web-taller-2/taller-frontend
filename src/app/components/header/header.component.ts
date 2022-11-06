@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CartUseCase } from "../../use-cases/cart-use-case.service";
-import { Producto } from "../../interfaces/producto";
+import { Product } from "../../interfaces/product";
 import { Router } from "@angular/router";
 
 @Component({
@@ -9,7 +9,7 @@ import { Router } from "@angular/router";
 })
 export class HeaderComponent {
 
-  carrito: Producto[] = []
+  carrito: Product[] = []
 
   constructor(private carritoUseCase: CartUseCase, private router: Router) {
     this.carrito = carritoUseCase.cart

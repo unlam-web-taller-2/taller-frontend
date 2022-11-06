@@ -1,6 +1,6 @@
 import { Rating } from "./rating";
 
-export interface Producto {
+export interface Product {
     id: number,
     title: string,
     price: number,

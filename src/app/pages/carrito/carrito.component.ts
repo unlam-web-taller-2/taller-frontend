@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartUseCase } from "../../use-cases/cart-use-case.service";
-import { Producto } from "../../interfaces/producto";
+import { Product } from "../../interfaces/product";
 
 @Component({
   selector: 'app-carrito',
@@ -8,7 +8,7 @@ import { Producto } from "../../interfaces/producto";
 })
 export class CarritoComponent implements OnInit {
 
-  carrito: Producto[] = []
+  carrito: Product[] = []
   total: number = 0
 
   constructor(private carritoUseCase: CartUseCase) { }

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Producto } from '../../interfaces/producto';
+import { Product } from '../../interfaces/product';
 import { CartUseCase } from "../../use-cases/cart-use-case.service";
 
 @Component({
@@ -9,7 +9,7 @@ import { CartUseCase } from "../../use-cases/cart-use-case.service";
 export class ProductoComponent implements OnInit {
 
   @Input()
-  producto: Producto = {
+  producto: Product = {
     id: 0,
     title: "",
     price: 0,
@@ -38,7 +38,7 @@ export class ProductoComponent implements OnInit {
       )
   }
 
-  agregarProducto(producto: Producto): void{
+  agregarProducto(producto: Product): void{
     this.carritoUseCase.update(producto)
   }
 }

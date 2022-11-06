@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Producto } from "../../interfaces/producto";
+import { Product } from "../../interfaces/product";
 import { ApiService } from "../../services/api.service";
 
 @Component({
@@ -8,7 +8,7 @@ import { ApiService } from "../../services/api.service";
 })
 export class HomeComponent implements OnInit {
 
-  productos: Producto[] = []
+  productos: Product[] = []
 
   constructor(private service: ApiService) { }
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { Producto } from '../interfaces/producto';
+import { Product } from '../interfaces/product';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -13,7 +13,7 @@ export class ApiService {
 
   constructor(protected httpClient: HttpClient) { }
 
-  getProducts(): Observable<Producto[]> {
-    return this.httpClient.get<Producto[]>(`${this.URL_BASE}/products`);
+  getProducts(): Observable<Product[]> {
+    return this.httpClient.get<Product[]>(`${this.URL_BASE}/products`);
   }
 }
