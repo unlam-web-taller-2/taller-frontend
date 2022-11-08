@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 
 import { Product } from '../interfaces/product';
 import { HttpClient } from '@angular/common/http';
+import { User } from "../interfaces/user";
 
 @Injectable({
   providedIn: 'root'
@@ -15,5 +16,14 @@ export class ApiService {
 
   getProducts(): Observable<Product[]> {
     return this.httpClient.get<Product[]>(`${this.URL_BASE}/products`);
+  }
+
+  signIn(email: string, password: string): Observable<any> {
+    const sign = {
+      email: email,
+      password: password
+    }
+
+    return this.httpClient.post<User>(`${this.URL_BASE}/sign-in`, sign)
   }
 }
