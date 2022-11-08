@@ -48,6 +48,6 @@ export class SignInComponent {
   }
 
   private signInError(error: any) {
-    console.log(error.messages)
+    console.log(error.message);
   }
 }

@@ -18,12 +18,24 @@ export class ApiService {
     return this.httpClient.get<Product[]>(`${this.URL_BASE}/products`);
   }
 
-  signIn(email: string, password: string): Observable<any> {
+  signIn(email: string, password: string): Observable<User> {
     const sign = {
       email: email,
       password: password
     }
 
     return this.httpClient.post<User>(`${this.URL_BASE}/sign-in`, sign)
+  }
+
+  signUp(email: string, password: string, name: string, lastname: string, address: string): Observable<any> {
+    const sign = {
+      email: email,
+      password: password,
+      name: name,
+      lastname: lastname,
+      address: address
+    }
+
+    return this.httpClient.post(`${this.URL_BASE}/sign-up`, sign);
   }
 }
