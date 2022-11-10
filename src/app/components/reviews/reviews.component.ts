@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { Rating } from "../../interfaces/rating";
 
 @Component({
   selector: 'app-reviews',
@@ -8,10 +7,7 @@ import { Rating } from "../../interfaces/rating";
 export class ReviewsComponent {
 
   @Input()
-  rating: Rating = {
-    rate: 0,
-    count: 0
-  }
+  rate: number = 0;
 
   @Input()
   centerStars: Boolean = false
@@ -19,6 +15,6 @@ export class ReviewsComponent {
   constructor() { }
 
   rateRounded(): number {
-    return Math.round(this.rating.rate)
+    return Math.round(this.rate)
   }
 }

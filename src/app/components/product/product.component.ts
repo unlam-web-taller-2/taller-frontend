@@ -16,10 +16,7 @@ export class ProductComponent implements OnInit {
     description: "",
     category: "",
     image: "",
-    rating: {
-      count: 0,
-      rate: 0
-    }
+    rate: 0
   }
 
   isAddedToCart: Boolean = false
