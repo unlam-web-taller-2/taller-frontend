@@ -3,6 +3,11 @@ import { ApiService } from "../../services/api.service";
 import { Router } from "@angular/router";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { User } from "../../interfaces/user";
+import { CartUseCase } from "../../use-cases/cart-use-case";
+import { UserLocalstorage } from "../../utils/user-localstorage";
+import { finalize } from "rxjs";
+import { ToastUseCase } from "../../use-cases/toast-use-case";
+import { ToastFactory } from "../../utils/toast-factory";
 
 @Component({
   selector: 'app-sign-in',
@@ -16,23 +21,28 @@ export class SignInComponent {
 
   isLoading: boolean = false;
 
-  constructor(private apiService: ApiService, private router: Router) { }
+  constructor(
+    private apiService: ApiService,
+    private router: Router,
+    private cartUseCase: CartUseCase,
+    private userLocalStorage: UserLocalstorage,
+    private toastUseCase: ToastUseCase
+  ) { }
 
-  signUp() {
+  goToSignUp() {
     this.router.navigate(['/sign-up']);
   }
 
   signIn() {
-    console.log(this.signInFormGroup.value)
     const email = this.signInFormGroup.get('email')?.value
     const password = this.signInFormGroup.get('password')?.value
     this.showButtonLoading(true);
     this.apiService.signIn(email ? email : '', password ? password : '')
+      .pipe(finalize(() => this.signInComplete()))
       .subscribe({
         next: res => this.signInSuccess(res),
-        error: err => this.signInError(err),
-        complete: () => this.signInComplete()
-      })
+        error: err => this.signInError(err.error)
+      });
   }
 
   private showButtonLoading(show: boolean) {
@@ -44,10 +54,12 @@ export class SignInComponent {
   }
 
   private signInSuccess(response: User) {
+    this.cartUseCase.clean();
+    this.userLocalStorage.saveUser(response);
     this.router.navigate(['/home']);
   }
 
   private signInError(error: any) {
-    console.log(error.message);
+    this.toastUseCase.show(ToastFactory.getError(error.message))
   }
 }

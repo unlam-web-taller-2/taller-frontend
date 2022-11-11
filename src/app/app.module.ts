@@ -14,6 +14,7 @@ import { ReviewsComponent } from './components/reviews/reviews.component';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { ReactiveFormsModule } from "@angular/forms";
+import { ToastComponent } from './components/toast/toast.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ReactiveFormsModule } from "@angular/forms";
     CartItemComponent,
     ReviewsComponent,
     SignInComponent,
-    SignUpComponent
+    SignUpComponent,
+    ToastComponent
   ],
   imports: [
     BrowserModule,

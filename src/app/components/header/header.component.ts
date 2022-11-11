@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CartUseCase } from "../../use-cases/cart-use-case.service";
+import { CartUseCase } from "../../use-cases/cart-use-case";
 import { Product } from "../../interfaces/product";
 import { Router } from "@angular/router";
 

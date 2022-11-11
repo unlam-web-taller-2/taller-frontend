@@ -1,6 +1,6 @@
 import { EventEmitter, Injectable } from "@angular/core";
 import { Product } from "../interfaces/product";
-import { CartLocalstorage } from "../utils/cart-localstorage.service";
+import { CartLocalstorage } from "../utils/cart-localstorage";
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +28,10 @@ export class CartUseCase {
 
   isAdded(product: Product): Boolean {
     return this.cart.some(prod => prod.id === product.id)
+  }
+
+  clean() {
+    localStorage.clear();
   }
 
   private add(product: Product) {

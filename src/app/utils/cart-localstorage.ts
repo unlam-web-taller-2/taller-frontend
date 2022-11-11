@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import {Product} from "../interfaces/product";
+import { Product } from "../interfaces/product";
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +14,7 @@ export class CartLocalstorage {
 
   getCart(): Product[] {
     const json = localStorage.getItem(this.CART_KEY)
-    const items = this.parseFromJson(json)
-
-    return items == null ? [] : items
+    return this.parseFromJson(json)
   }
 
   private parseToJson(products: Product[]): string {
