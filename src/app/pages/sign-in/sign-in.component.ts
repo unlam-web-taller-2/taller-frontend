@@ -8,6 +8,7 @@ import { UserLocalstorage } from "../../utils/user-localstorage";
 import { finalize } from "rxjs";
 import { ToastUseCase } from "../../use-cases/toast-use-case";
 import { ToastFactory } from "../../utils/toast-factory";
+import { ApiResponse } from "../../services/responses/ApiResponse";
 
 @Component({
   selector: 'app-sign-in',
@@ -37,7 +38,7 @@ export class SignInComponent {
     const email = this.signInFormGroup.get('email')?.value
     const password = this.signInFormGroup.get('password')?.value
     this.showButtonLoading(true);
-    this.apiService.signIn(email ? email : '', password ? password : '')
+    this.apiService.login(email ? email : '', password ? password : '')
       .pipe(finalize(() => this.signInComplete()))
       .subscribe({
         next: res => this.signInSuccess(res),
@@ -53,10 +54,10 @@ export class SignInComponent {
     this.showButtonLoading(false);
   }
 
-  private signInSuccess(response: User) {
-    this.cartUseCase.clean();
-    this.userLocalStorage.saveUser(response);
+  private signInSuccess(response: ApiResponse<User>) {
+    this.userLocalStorage.saveUser(response.data);
     this.router.navigate(['/home']);
+    this.toastUseCase.show(ToastFactory.getSuccess(response.message))
   }
 
   private signInError(error: any) {

@@ -1,49 +1,61 @@
 import { EventEmitter, Injectable } from "@angular/core";
 import { Product } from "../interfaces/product";
-import { CartLocalstorage } from "../utils/cart-localstorage";
+import { ApiService } from "../services/api.service";
+import { ToastUseCase } from "./toast-use-case";
+import { UserLocalstorage } from "../utils/user-localstorage";
+import { User, USER_DEFAULT } from "../interfaces/user";
+import { ToastFactory } from "../utils/toast-factory";
+import { Toast } from "../interfaces/toast";
+import { ApiResponse } from "../services/responses/ApiResponse";
+import { Observer } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartUseCase {
+  user: User = USER_DEFAULT
   cart: Product[] = []
-
   cartEmitter: EventEmitter<Product[]> = new EventEmitter<Product[]>()
-
-  constructor(private localStorage: CartLocalstorage) {
-    this.cart = localStorage.getCart()
-    this.cartEmitter.emit(this.cart)
+  private handlerObs: Partial<Observer<ApiResponse<Product[]>>> = {
+    next: res => {
+      this.cart = res.data
+      this.cartEmitter.emit(this.cart)
+    },
+    error: err => this.showToast(ToastFactory.getError(err.error.message))
   }
 
-  update(product: Product) {
-    if (!this.isAdded(product)) {
-      this.add(product)
-    } else {
-      this.remove(product)
-    }
+  constructor(private apiService: ApiService, private toastUseCase: ToastUseCase, private userLocalstorage: UserLocalstorage) {
+    this.user = userLocalstorage.getUser()
+  }
 
-    this.localStorage.saveCart(this.cart)
-    this.cartEmitter.emit(this.cart)
+  addRemove(product: Product) {
+    if (this.isAdded(product)) {
+      this.remove(product)
+    } else {
+      this.add(product)
+    }
   }
 
   isAdded(product: Product): Boolean {
     return this.cart.some(prod => prod.id === product.id)
   }
 
-  clean() {
-    localStorage.clear();
+  getCart() {
+    this.apiService.getCart(this.user.id)
+      .subscribe(this.handlerObs)
   }
 
   private add(product: Product) {
-    if (!this.cart.some(prod => prod.id === product.id)) {
-      this.cart.push(product)
-    }
+    this.apiService.addCart(this.user.id, product.id)
+      .subscribe(this.handlerObs)
   }
 
   private remove(product: Product) {
-    const pos = this.cart.findIndex(prod => prod.id === product.id)
-    if (pos > -1) {
-      this.cart.splice(pos, 1)
-    }
+    this.apiService.removeCart(this.user.id, product.id)
+      .subscribe(this.handlerObs)
+  }
+
+  private showToast(toast: Toast) {
+    this.toastUseCase.show(toast)
   }
 }

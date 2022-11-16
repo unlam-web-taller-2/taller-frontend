@@ -12,17 +12,21 @@ export class HeaderComponent {
   cart: Product[] = []
 
   constructor(private cartUseCase: CartUseCase, private router: Router) {
-    this.cart = cartUseCase.cart
+    this.obsCartEmitter()
+    this.cartUseCase.getCart()
+  }
+
+  goToCartPage() {
+    // noinspection JSIgnoredPromiseFromCall
+    this.router.navigate(['/cart']);
+  }
+
+  private obsCartEmitter() {
     this.cartUseCase.cartEmitter
       .asObservable()
       .subscribe(cart => {
         console.log(cart)
         this.cart = cart
       })
-  }
-
-  goToCartPage() {
-    // noinspection JSIgnoredPromiseFromCall
-    this.router.navigate(['/cart']);
   }
 }

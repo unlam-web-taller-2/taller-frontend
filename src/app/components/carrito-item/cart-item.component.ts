@@ -24,6 +24,6 @@ export class CartItemComponent implements OnInit {
   ngOnInit(): void { }
 
   remover() {
-    this.cartUseCase.update(this.product)
+    this.cartUseCase.addRemove(this.product)
   }
 }

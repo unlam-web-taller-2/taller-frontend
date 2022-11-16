@@ -8,11 +8,11 @@ import { ApiService } from "../../services/api.service";
 })
 export class HomeComponent implements OnInit {
 
-  productos: Product[] = []
+  products: Product[] = []
 
   constructor(private service: ApiService) { }
 
   ngOnInit(): void {
-    this.service.getProducts().subscribe(response => this.productos = response);
+    this.service.getProducts().subscribe(response => this.products = response.data);
   }
 }

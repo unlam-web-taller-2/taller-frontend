@@ -36,6 +36,6 @@ export class ProductComponent implements OnInit {
   }
 
   addToCart(product: Product): void{
-    this.cartUseCase.update(product)
+    this.cartUseCase.addRemove(product)
   }
 }

@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { Router } from "@angular/router";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ApiService } from "../../services/api.service";
+import { ApiResponse } from "../../services/responses/ApiResponse";
+import { ToastUseCase } from "../../use-cases/toast-use-case";
+import {ToastFactory} from "../../utils/toast-factory";
 
 @Component({
   selector: 'app-sign-up',
@@ -19,7 +22,7 @@ export class SignUpComponent {
 
   isLoading: boolean = false;
 
-  constructor(private router: Router, private apiService: ApiService) { }
+  constructor(private router: Router, private apiService: ApiService, private toastUseCase: ToastUseCase) { }
 
   signUp() {
     const email = this.signUpFormGroup.get('email')?.value;
@@ -29,7 +32,7 @@ export class SignUpComponent {
     const address = this.signUpFormGroup.get('address')?.value;
 
     this.showButtonLoading(true);
-    this.apiService.signUp(
+    this.apiService.register(
       email ? email : '',
       password ? password : '',
       name ? name : '',
@@ -42,12 +45,13 @@ export class SignUpComponent {
     });
   }
 
-  private signUpSuccess(response: any) {
+  private signUpSuccess(response: ApiResponse<any>) {
     this.router.navigate(['/sign-in']);
+    this.toastUseCase.show(ToastFactory.getSuccess(response.message))
   }
 
   private signUpError(error: any) {
-    console.log(error.message);
+    this.toastUseCase.show(ToastFactory.getError(error.message))
   }
 
   private signUpComplete() {
