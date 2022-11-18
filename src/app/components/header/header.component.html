@@ -18,13 +18,26 @@
             </ul>
           </li>
         </ul>
-        <form class="d-flex">
-          <button class="btn btn-outline-dark" type="submit" (click)="goToCartPage()">
+        <div class="d-block">
+          <button class="btn btn-outline-dark" type="button" (click)="goToCartPage()">
             <i class="bi-cart-fill me-1"></i>
             Cart
             <span class="badge bg-dark text-white ms-1 rounded-pill">{{ cart.length }}</span>
           </button>
-        </form>
+
+          <div *ngIf="user" class="dropdown d-inline ms-4">
+            <button class="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+              <span>{{ user.name + ' ' + user.lastname }}</span>
+              <i class="bi bi-person-circle ms-2"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+              <li><a class="dropdown-item active" href="#">Profile</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
+            </ul>
+          </div>
+
+        </div>
       </div>
     </div>
   </nav>

@@ -25,7 +25,7 @@ export class CartUseCase {
   }
 
   constructor(private apiService: ApiService, private toastUseCase: ToastUseCase, private userLocalstorage: UserLocalstorage) {
-    this.user = userLocalstorage.getUser()
+    this.user = userLocalstorage.getUser() ? userLocalstorage.getUser() as User : USER_DEFAULT
   }
 
   addRemove(product: Product) {

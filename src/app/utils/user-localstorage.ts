@@ -5,23 +5,27 @@ import {User} from "../interfaces/user";
   providedIn: 'root'
 })
 export class UserLocalstorage {
-  private USER_KEy = 'user'
+  private USER_KEY = 'user'
 
   saveUser(user: User) {
     const json = this.parseToJson(user)
-    localStorage.setItem(this.USER_KEy, json)
+    localStorage.setItem(this.USER_KEY, json)
   }
 
   getUser() {
-    const json = localStorage.getItem(this.USER_KEy)
+    const json = localStorage.getItem(this.USER_KEY)
     return this.parseFromJson(json)
+  }
+
+  clear() {
+    localStorage.removeItem(this.USER_KEY)
   }
 
   private parseToJson(user: User): string {
     return JSON.stringify(user)
   }
 
-  private parseFromJson(json: string | null): User {
-    return json === null ? [] : JSON.parse(json)
+  private parseFromJson(json: string | null): User | null {
+    return json === null ? null : JSON.parse(json)
   }
 }
