@@ -15,6 +15,7 @@ import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { ReactiveFormsModule } from "@angular/forms";
 import { ToastComponent } from './components/toast/toast.component';
+import { VerifyComponent } from './pages/verify/verify.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ToastComponent } from './components/toast/toast.component';
     ReviewsComponent,
     SignInComponent,
     SignUpComponent,
-    ToastComponent
+    ToastComponent,
+    VerifyComponent
   ],
   imports: [
     BrowserModule,

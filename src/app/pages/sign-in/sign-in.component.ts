@@ -9,15 +9,17 @@ import { finalize } from "rxjs";
 import { ToastUseCase } from "../../use-cases/toast-use-case";
 import { ToastFactory } from "../../utils/toast-factory";
 import { ApiResponse } from "../../services/responses/ApiResponse";
+import { FormsValidators } from "../../utils/forms-validators";
 
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html'
 })
 export class SignInComponent {
+
   signInFormGroup = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required])
+    email: new FormControl('', [ Validators.required, Validators.email ]),
+    password: new FormControl('', [ Validators.required, FormsValidators.validatePassword ])
   })
 
   isLoading: boolean = false;
@@ -42,7 +44,7 @@ export class SignInComponent {
       .pipe(finalize(() => this.signInComplete()))
       .subscribe({
         next: res => this.signInSuccess(res),
-        error: err => this.signInError(err.error)
+        error: err => this.signInError(email ? email : '', err.error)
       });
   }
 
@@ -60,7 +62,13 @@ export class SignInComponent {
     this.toastUseCase.show(ToastFactory.getSuccess(response.message))
   }
 
-  private signInError(error: any) {
+  private signInError(email: string, error: any) {
+    switch (error.code) {
+      case 'UserNotConfirmedException': {
+        this.router.navigate(['/verify'], { queryParams: { email: email }})
+        break
+      }
+    }
     this.toastUseCase.show(ToastFactory.getError(error.message))
   }
 }

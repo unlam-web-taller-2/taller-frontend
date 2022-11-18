@@ -15,10 +15,12 @@ export class ApiService {
 
   constructor(protected httpClient: HttpClient) { }
 
+  // --------------------------------- Products ---------------------------------
   getProducts(): Observable<ApiResponse<Product[]>> {
     return this.httpClient.get<ApiResponse<Product[]>>(`${this.BASE_URL}/products/`);
   }
 
+  // --------------------------------- User ---------------------------------
   login(email: string, password: string): Observable<ApiResponse<User>> {
     const login = {
       email: email,
@@ -40,6 +42,15 @@ export class ApiService {
     return this.httpClient.post<ApiResponse<any>>(`${this.BASE_URL}/users/register`, register);
   }
 
+  verify(email: string, code: string): Observable<ApiResponse<any>> {
+    const request = {
+      email: email,
+      code: code
+    }
+    return this.httpClient.post<ApiResponse<any>>(`${this.BASE_URL}/users/verify`, request);
+  }
+
+  // --------------------------------- Cart ---------------------------------
   addCart(userId: number, productId: number): Observable<ApiResponse<Product[]>> {
     const request = {
       user_id: userId,

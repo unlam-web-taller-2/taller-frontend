@@ -4,7 +4,8 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ApiService } from "../../services/api.service";
 import { ApiResponse } from "../../services/responses/ApiResponse";
 import { ToastUseCase } from "../../use-cases/toast-use-case";
-import {ToastFactory} from "../../utils/toast-factory";
+import { ToastFactory } from "../../utils/toast-factory";
+import { FormsValidators } from "../../utils/forms-validators";
 
 @Component({
   selector: 'app-sign-up',
@@ -13,8 +14,8 @@ import {ToastFactory} from "../../utils/toast-factory";
 export class SignUpComponent {
 
   signUpFormGroup = new FormGroup({
-    email: new FormControl('', [Validators.email, Validators.required]),
-    password: new FormControl('', Validators.required),
+    email: new FormControl('', [ Validators.email, Validators.required ]),
+    password: new FormControl('', [ Validators.required, FormsValidators.validatePassword ]),
     name: new FormControl('', Validators.required),
     lastname: new FormControl('', Validators.required),
     address: new FormControl('', Validators.required)

@@ -49,7 +49,8 @@ export class ToastComponent {
     this.timerSubscription = this.timer
       .subscribe({
         next: () => {
-          this.show = false}
+            this.show = false
+          }
         }
       )
   }
