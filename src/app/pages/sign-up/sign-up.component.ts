@@ -6,6 +6,7 @@ import { ApiResponse } from "../../services/responses/ApiResponse";
 import { ToastUseCase } from "../../use-cases/toast-use-case";
 import { ToastFactory } from "../../utils/toast-factory";
 import { FormsValidators } from "../../utils/forms-validators";
+import {finalize} from "rxjs";
 
 @Component({
   selector: 'app-sign-up',
@@ -39,10 +40,11 @@ export class SignUpComponent {
       name ? name : '',
       lastname ? lastname : '',
       address ? address : ''
-    ).subscribe({
+    )
+      .pipe(finalize(() => this.signUpComplete()))
+      .subscribe({
       next: resp => this.signUpSuccess(resp),
-      error: err => this.signUpError(err),
-      complete: () => this.signUpComplete()
+      error: err => this.signUpError(err)
     });
   }
 
