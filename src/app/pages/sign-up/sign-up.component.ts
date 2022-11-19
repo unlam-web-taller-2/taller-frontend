@@ -44,7 +44,7 @@ export class SignUpComponent {
       .pipe(finalize(() => this.signUpComplete()))
       .subscribe({
       next: resp => this.signUpSuccess(resp),
-      error: err => this.signUpError(err)
+      error: err => this.signUpError(err.error)
     });
   }
 
