@@ -20,6 +20,10 @@ export class ApiService {
     return this.httpClient.get<ApiResponse<Product[]>>(`${this.BASE_URL}/products/`);
   }
 
+  getProduct(id: number): Observable<ApiResponse<Product>> {
+    return this.httpClient.get<ApiResponse<Product>>(`${this.BASE_URL}/products/get_detail?product_id=${ id }`)
+  }
+
   // --------------------------------- User ---------------------------------
   login(email: string, password: string): Observable<ApiResponse<User>> {
     const login = {
