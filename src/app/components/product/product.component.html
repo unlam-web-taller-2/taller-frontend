@@ -9,7 +9,7 @@
   <div class="card-body p-5">
     <div class="text-center">
       <!-- Product name-->
-      <h5 class="fw-bolder mb-4">{{ product.title }}</h5>
+      <h5 class="fw-bolder mb-4" (click)="goToProductDetail()">{{ product.title }}</h5>
       <!-- Product reviews-->
       <app-reviews [rate]="product.rate" [centerStars]="true" ></app-reviews>
       <!-- Product price-->

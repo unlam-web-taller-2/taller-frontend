@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Product } from '../../interfaces/product';
 import { CartUseCase } from "../../use-cases/cart-use-case";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-product',
@@ -21,7 +22,7 @@ export class ProductComponent implements OnInit {
 
   isAddedToCart: Boolean = false
 
-  constructor(private cartUseCase: CartUseCase) { }
+  constructor(private cartUseCase: CartUseCase, private router: Router) { }
 
   ngOnInit(): void {
     this.isAddedToCart = this.cartUseCase.isAdded(this.product)
@@ -37,5 +38,9 @@ export class ProductComponent implements OnInit {
 
   addToCart(product: Product): void{
     this.cartUseCase.addRemove(product)
+  }
+
+  goToProductDetail() {
+    this.router.navigate(['/detail'], { queryParams: { id: this.product.id } })
   }
 }

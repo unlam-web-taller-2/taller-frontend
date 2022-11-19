@@ -5,6 +5,7 @@ import { CartComponent } from "./pages/cart/cart.component";
 import { SignInComponent } from "./pages/sign-in/sign-in.component";
 import { SignUpComponent } from "./pages/sign-up/sign-up.component";
 import { VerifyComponent } from "./pages/verify/verify.component";
+import { DetailComponent } from "./pages/detail/detail.component";
 
 const routes: Routes = [
   {
@@ -26,6 +27,9 @@ const routes: Routes = [
   {
     path: 'verify',
     component: VerifyComponent
+  },{
+    path: 'detail',
+    component: DetailComponent
   },
   {
     path: '**',
