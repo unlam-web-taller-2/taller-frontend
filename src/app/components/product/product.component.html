@@ -1,6 +1,6 @@
 <div class="card h-100">
   <!-- Sale badge-->
-  <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
+  <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">En Venta</div>
   <!-- Product image-->
   <div>
     <img class="card-img-top p-3" src="{{product.image}}" alt="{{product.title}}"/>
@@ -9,11 +9,11 @@
   <div class="card-body p-5">
     <div class="text-center">
       <!-- Product name-->
-      <h5 class="fw-bolder">{{ product.title }}</h5>
+      <h5 class="fw-bolder mb-4">{{ product.title }}</h5>
       <!-- Product reviews-->
       <app-reviews [rate]="product.rate" [centerStars]="true" ></app-reviews>
       <!-- Product price-->
-      <span class="text-muted text-decoration-line-through">$ {{product.price}}</span>
+      <h4 class="fw-bolder mt-4">$ {{product.price}}</h4>
     </div>
   </div>
   <!-- Product actions-->
@@ -23,7 +23,7 @@
         class="btn mt-auto"
         [ngClass]="isAddedToCart ? 'btn-danger' : 'btn-outline-dark'"
         (click)="addToCart(product)">
-          {{ isAddedToCart ? "Remove from cart" : "Add to cart" }}
+        <span class="fw-bold">{{ isAddedToCart ? "Remover" : "Agregar" }}</span>
       </button>
     </div>
   </div>
