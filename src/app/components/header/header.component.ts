@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { CartUseCase } from "../../use-cases/cart-use-case";
 import { Product } from "../../interfaces/product";
 import { Router } from "@angular/router";
-import {UserLocalstorage} from "../../utils/user-localstorage";
-import {User} from "../../interfaces/user";
+import { UserLocalstorage } from "../../utils/user-localstorage";
+import { User } from "../../interfaces/user";
 
 @Component({
   selector: 'app-header',
@@ -37,6 +37,10 @@ export class HeaderComponent {
 
   logout() {
     this.userStorage.clear()
+    this.router.navigate(['/sign-in'])
+  }
+
+  goToLogin() {
     this.router.navigate(['/sign-in'])
   }
 }
