@@ -1,1 +1,27 @@
-<p>{{ product.title }}</p>
+<div class="d-flex min-vh-100 flex-column justify-content-between">
+  <!-- Header-->
+  <app-header></app-header>
+
+  <div>
+    <!-- Product image-->
+    <div class="container d-flex flex-column align-items-center">
+      <img class="card-img-top p-3 justify-content-center" src="{{product.image}}" alt="{{product.title}}" style="width: 200px; height: 200px;"/>
+      <h4 class="fw-bolder mt-4">$ {{ product.description }}</h4>
+    </div>
+    <!-- Product details-->
+    <div class="card-body p-5">
+      <div class="text-center">
+        <!-- Product name-->
+        <h5 class="fw-bolder mb-4">{{ product.title }}</h5>
+        <!-- Product reviews-->
+        <app-reviews [rate]="product.rate" [centerStars]="true" ></app-reviews>
+        <!-- Product price-->
+        <h4 class="fw-bolder mt-4">$ {{product.price}}</h4>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer-->
+  <app-footer></app-footer>
+
+</div>
